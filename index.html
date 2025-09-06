@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Check-In</title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="manifest" href="manifest.json" />
+    </head>
+    <body>
+        <h1>Urfa Check-In</h1>
+        <div id="checkInListBtn">Check-Ins</div>
+        <dialog id="dialogSecret" close>
+            <label for="secret">Kennwort eingeben</label>
+            <input type="password" name="secret" id="secret" />
+            <button id="secretBtn">Weiter</button>
+            <button id="cancelSecretBtn">Abbrechen</button>
+        </dialog>
+        <dialog id="dialog" close>
+            <p>Es muss ein Ordner zum Speichern der Datei ausgewählt werden!</p>
+            <button id="chooseFolder">Ordner auswählen</button>
+        </dialog>
+        <div id="checkInList" class="hidden">
+            <div class="checkInListMenu">
+                <button id="checkInListFilterOpen">Offene Check-In</button>
+                <button id="checkInListFilterAll">Alle Check-In</button>
+                <button id="checkInListBack">Zurück</button>
+            </div>
+            <table id="checkInListTable">
+                <thead>
+                    <tr>
+                        <th>Erstellt am</th>
+                        <th>Vorname</th>
+                        <th>Nachname</th>
+                        <th>E-Mail</th>
+                        <th>Land</th>
+                        <th>Ort</th>
+                        <th>PLZ</th>
+                        <th>Straße</th>
+                        <th>Nr</th>
+                        <th>Abgeschlossen</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="checkInForm">
+            <fieldset>
+                <div class="inputfield">
+                    <label for="room">Zimmernummer: <input type="text" id="room" required /></label>
+                </div>
+                <div class="inputfield">
+                    <label for="quantity">Personen: <input type="number" id="quantity" min="1" required /></label>
+                </div>
+                <button id="startCheckInBtn">Check-In Starten</button>
+                <button id="cancelCheckInBtn" class="hidden">Check-In Abbrechen</button>
+            </fieldset>
+
+            <div id="personForm">
+                <div class="tabs"></div>
+
+                <div id="person" class="person hidden">
+                    <div class="inputfield">
+                        <label for="firstname"
+                            >Vorname: <input type="text" name="firstname" id="firstname" pattern="\w.*" required
+                        /></label>
+                    </div>
+                    <div class="inputfield">
+                        <label for="lastname"
+                            >Familienname: <input type="text" name="lastname" id="lastname" pattern="\w.*" required
+                        /></label>
+                    </div>
+                    <div class="inputfield">
+                        <label for="email">E-Mail: <input type="email" name="email" id="email" required /></label>
+                    </div>
+                    <div class="inputfield">
+                        <label for="country"
+                            >Land: <input type="text" name="country" id="country" pattern="\w.*" required
+                        /></label>
+                    </div>
+                    <div class="inputfield">
+                        <label for="city"
+                            >Ort: <input type="text" name="city" id="city" pattern="\w.*" required
+                        /></label>
+                    </div>
+                    <div class="inputfield">
+                        <label for="zipcode"
+                            >PLZ: <input type="text" name="zipcode" id="zipcode" pattern="\w.*" required
+                        /></label>
+                    </div>
+                    <div class="inputfield">
+                        <label for="street"
+                            >Straße: <input type="text" name="street" id="street" pattern="\w.*" required
+                        /></label>
+                    </div>
+                    <div class="inputfield">
+                        <label for="housenumber"
+                            >Hausnummer: <input type="text" name="housenumber" id="housenumber" pattern="\w.*" required
+                        /></label>
+                    </div>
+                    <label for="copyAddress"
+                        >Adresse für nächste Person kopieren <input type="checkbox" name="copyAddress" id="copyAddress"
+                    /></label>
+                    <button class="nextBtn" id="nextBtn">Weiter</button>
+                </div>
+                <div class="overview hidden">
+                    <table id="overviewTable">
+                        <thead>
+                            <tr>
+                                <th id="tableFirstname">Vorname</th>
+                                <th id="tableLastname">Nachname</th>
+                                <th id="tableEmail">E-Mail</th>
+                                <th id="tableCountry">Land</th>
+                                <th id="tableCity">Ort</th>
+                                <th id="tableZipcode">PLZ</th>
+                                <th id="tableStreet">Straße</th>
+                                <th id="tableHousenumber">Nr</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <div class="thanks">
+                        <p id="thanks">Dankeschön!</p>
+                        <p id="returnTablet">Bitte übergeben Sie das Tablet wieder an die Rezeption.</p>
+                    </div>
+                    <button id="finishBtn">Von der Rezeption bestätigt</button>
+                </div>
+            </div>
+        </div>
+        <script type="module" src="./js/fileoperations.js"></script>
+        <script type="module" src="./js/checkInList.js"></script>
+        <script type="module" src="./js/index.js"></script>
+    </body>
+</html>
