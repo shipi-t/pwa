@@ -8,9 +8,20 @@
   "theme_color": "#0078d7",
   "icons": [
     {
-      "src": "./favicon.ico",
-      "sizes": "180x100",
-      "type": "image/x-icon"
+      "src": "./images/logo.png",
+      "sizes": "283x283",
+      "type": "image/png"
     }
-  ]
+  ],
+  "screenshots": [
+  {
+    "src": "images/landscape.png",
+    "form_factor": "wide",
+    "sizes": "1917x878"
+  },
+  {
+    "src": "images/portrait.png",
+    "sizes": "477x767"
+  }
+]
 }
