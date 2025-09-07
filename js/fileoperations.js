@@ -5,15 +5,16 @@ const chooseFolderBtn = document.getElementById("chooseFolder");
 let folderHandle = null;
 
 async function saveFolderHandle(handle) {
-    const db = await openDB();
-    const tx = db.transaction("handles", "readwrite");
-    const store = tx.objectStore("handles");
-    store.put(handle, "folderHandle");
+    folderHandle = handle;
+    // const db = await openDB();
+    // const tx = db.transaction("handles", "readwrite");
+    // const store = tx.objectStore("handles");
+    // store.put(handle, "folderHandle");
 
-    return new Promise((resolve, reject) => {
-        tx.oncomplete = () => resolve();
-        tx.onerror = () => reject(tx.error);
-    });
+    // return new Promise((resolve, reject) => {
+    //     tx.oncomplete = () => resolve();
+    //     tx.onerror = () => reject(tx.error);
+    // });
 }
 
 // ---------- Permission Check ----------
@@ -33,26 +34,38 @@ async function verifyPermission(handle) {
 }
 
 addEventListener("DOMContentLoaded", async () => {
-    await openDB();
-    try {
-        const storedHandle = await loadFolderHandle();
-        if (storedHandle && (await verifyPermission(storedHandle))) {
-            folderHandle = storedHandle;
-            console.log("Restored folder handle with permissions granted.");
-        } else {
-            console.log("No valid stored handle. Asking user to choose folder...");
-            dialog.showModal();
-        }
-    } catch {
-        dialog.showModal();
-    }
+    // await openDB();
+    // try {
+    //     const storedHandle = await loadFolderHandle();
+    //     if (storedHandle && (await verifyPermission(storedHandle))) {
+    //         folderHandle = storedHandle;
+    //         console.log("Restored folder handle with permissions granted.");
+    //     } else {
+    //         console.log("No valid stored handle. Asking user to choose folder...");
+    //         dialog.showModal();
+    //     }
+    // } catch {
+    //     dialog.showModal();
+    // }
+    dialog.showModal();
 });
 
 // When user picks a folder manually
 chooseFolderBtn.addEventListener("click", async () => {
     try {
         folderHandle = await window.showDirectoryPicker();
-        await saveFolderHandle(folderHandle);
+        // await saveFolderHandle(folderHandle);
+        const filename = `Berechtigungen`;
+
+        // Create file handle
+        const fileHandle = await folderHandle.getFileHandle(filename, {
+            create: true,
+        });
+
+        // Write file content
+        const writable = await fileHandle.createWritable();
+        await writable.write(`Test`);
+        await writable.close();
         dialog.close();
         console.log("New folder handle saved.");
     } catch (err) {
