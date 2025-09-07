@@ -62,12 +62,12 @@
                 <div id="person" class="person hidden">
                     <div class="inputfield">
                         <label for="firstname"
-                            >Vorname: <input type="text" name="firstname" id="firstname" pattern="\w.*" required
+                            >Vorname: <input type="text" name="firstname" id="firstname" pattern=".*\w.*" required
                         /></label>
                     </div>
                     <div class="inputfield">
                         <label for="lastname"
-                            >Familienname: <input type="text" name="lastname" id="lastname" pattern="\w.*" required
+                            >Familienname: <input type="text" name="lastname" id="lastname" pattern=".*\w.*" required
                         /></label>
                     </div>
                     <div class="inputfield">
@@ -75,32 +75,36 @@
                     </div>
                     <div class="inputfield">
                         <label for="country"
-                            >Land: <input type="text" name="country" id="country" pattern="\w.*" required
+                            >Land: <input type="text" name="country" id="country" pattern=".*\w.*" required
                         /></label>
                     </div>
                     <div class="inputfield">
                         <label for="city"
-                            >Ort: <input type="text" name="city" id="city" pattern="\w.*" required
+                            >Ort: <input type="text" name="city" id="city" pattern=".*\w.*" required
                         /></label>
                     </div>
                     <div class="inputfield">
                         <label for="zipcode"
-                            >PLZ: <input type="text" name="zipcode" id="zipcode" pattern="\w.*" required
+                            >PLZ: <input type="text" name="zipcode" id="zipcode" pattern=".*\w.*" required
                         /></label>
                     </div>
                     <div class="inputfield">
                         <label for="street"
-                            >Straße: <input type="text" name="street" id="street" pattern="\w.*" required
+                            >Straße: <input type="text" name="street" id="street" pattern=".*\w.*" required
                         /></label>
                     </div>
                     <div class="inputfield">
                         <label for="housenumber"
-                            >Hausnummer: <input type="text" name="housenumber" id="housenumber" pattern="\w.*" required
+                            >Hausnummer:
+                            <input type="text" name="housenumber" id="housenumber" pattern=".*\w.*" required
                         /></label>
                     </div>
-                    <label for="copyAddress"
-                        >Adresse für nächste Person kopieren <input type="checkbox" name="copyAddress" id="copyAddress"
-                    /></label>
+                    <div class="inputfield">
+                        <label for="copyAddress"
+                            >Adresse für nächste Person kopieren
+                            <input type="checkbox" name="copyAddress" id="copyAddress"
+                        /></label>
+                    </div>
                     <button class="nextBtn" id="nextBtn">Weiter</button>
                 </div>
                 <div class="overview hidden">

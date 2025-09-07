@@ -20,10 +20,9 @@ dialog * {
 
 #checkInForm,
 #checkInList {
-    padding: 30px;
-    /* width: 100%; */
-    /* height: 100%; */
+    padding: 10px;
     position: relative;
+    margin-top: 20px;
 }
 
 .checkInListMenu {
@@ -37,8 +36,8 @@ dialog * {
 #checkInListBtn {
     display: inline-block;
     position: absolute;
-    right: 30px;
-    top: 20px;
+    right: 20px;
+    top: 10px;
     background-color: #ccc;
     color: #205c1c;
     border-radius: 12px;
@@ -59,10 +58,14 @@ fieldset {
     border: none;
     display: grid;
     align-items: center;
-    grid-template-columns: 2fr 2fr 1fr;
+    grid-template-columns: 3fr 3fr 1fr;
     border-top: 2px solid #eee;
     border-bottom: 2px solid #eee;
-    padding-top: 10px;
+    padding: 20px 10px;
+}
+
+label {
+    font-size: 18px;
 }
 
 fieldset label,
@@ -75,6 +78,7 @@ fieldset input {
 
 #personForm {
     padding: 15px;
+    margin-top: 20px;
 }
 
 .tabs {
@@ -96,10 +100,6 @@ input[type="radio"] {
     margin-right: 10px;
 }
 
-.radio-label:hover {
-    background-color: #949494;
-}
-
 /* 3. Style the label when its radio button is checked */
 .active-tab {
     background-color: #205c1c;
@@ -108,7 +108,7 @@ input[type="radio"] {
 }
 
 .inputfield {
-    margin-bottom: 5px;
+    margin-bottom: 15px;
 }
 
 .inputfield label {
@@ -123,7 +123,7 @@ input {
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 8px;
-    font-size: 12px;
+    font-size: 18px;
 }
 
 label[for="copyAddress"] {
@@ -137,8 +137,8 @@ label[for="copyAddress"] {
 }
 
 #copyAddress {
-    width: 2em;
-    height: 2em;
+    width: 22px;
+    height: 22px;
     margin-left: 8px;
     vertical-align: bottom;
 }
@@ -150,7 +150,7 @@ button {
     border-radius: 8px;
     color: white;
     background-color: #205c1c;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -168,8 +168,8 @@ button {
 .person {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0px 25px;
-    padding-top: 20px;
+    gap: 0px 20px;
+    padding-top: 10px;
     align-items: last baseline;
 }
 
@@ -188,6 +188,7 @@ table {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden; /* Ensures rounded corners on children */
+    font-size: 13px;
 }
 
 th,
@@ -231,4 +232,10 @@ tr:hover {
 #returnTablet {
     /* font-size: 20px; */
     font-weight: 800;
+}
+
+@media (min-width: 1100px) {
+    table {
+        font-size: 18px;
+    }
 }

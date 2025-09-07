@@ -71,7 +71,7 @@ export async function saveFile(personArray, room, quantity) {
         }
 
         const date = new Date();
-        const filename = `Zimmer ${room} am ${getFormatDateForFilename(true, date)} mit ${quantity} Person(en)`;
+        const filename = `Zimmer ${room} am ${getFormatDateForFilename(true, date)} mit ${quantity} Person(en).txt`;
 
         // Create file handle
         const fileHandle = await folderHandle.getFileHandle(filename, {
