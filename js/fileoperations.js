@@ -66,8 +66,7 @@ export async function saveFile(personArray, room, quantity) {
         // If no folder handle, ask user
         if (!folderHandle) {
             folderHandle = await window.showDirectoryPicker();
-            await saveFolder;
-            Handle(folderHandle);
+            await saveFolderHandle(folderHandle);
         }
 
         const date = new Date();
