@@ -1,21 +1,6 @@
-import { openDB, loadFolderHandle } from "./dboperations.js";
-
 const dialog = document.getElementById("dialog");
 const chooseFolderBtn = document.getElementById("chooseFolder");
 let folderHandle = null;
-
-async function saveFolderHandle(handle) {
-    folderHandle = handle;
-    // const db = await openDB();
-    // const tx = db.transaction("handles", "readwrite");
-    // const store = tx.objectStore("handles");
-    // store.put(handle, "folderHandle");
-
-    // return new Promise((resolve, reject) => {
-    //     tx.oncomplete = () => resolve();
-    //     tx.onerror = () => reject(tx.error);
-    // });
-}
 
 // ---------- Permission Check ----------
 async function verifyPermission(handle) {
@@ -34,19 +19,6 @@ async function verifyPermission(handle) {
 }
 
 addEventListener("DOMContentLoaded", async () => {
-    // await openDB();
-    // try {
-    //     const storedHandle = await loadFolderHandle();
-    //     if (storedHandle && (await verifyPermission(storedHandle))) {
-    //         folderHandle = storedHandle;
-    //         console.log("Restored folder handle with permissions granted.");
-    //     } else {
-    //         console.log("No valid stored handle. Asking user to choose folder...");
-    //         dialog.showModal();
-    //     }
-    // } catch {
-    //     dialog.showModal();
-    // }
     dialog.showModal();
 });
 
@@ -54,18 +26,7 @@ addEventListener("DOMContentLoaded", async () => {
 chooseFolderBtn.addEventListener("click", async () => {
     try {
         folderHandle = await window.showDirectoryPicker();
-        // await saveFolderHandle(folderHandle);
-        const filename = `Berechtigungen`;
-
-        // Create file handle
-        const fileHandle = await folderHandle.getFileHandle(filename, {
-            create: true,
-        });
-
-        // Write file content
-        const writable = await fileHandle.createWritable();
-        await writable.write(`Test`);
-        await writable.close();
+        await writeDummyFile();
         dialog.close();
         console.log("New folder handle saved.");
     } catch (err) {
@@ -73,13 +34,26 @@ chooseFolderBtn.addEventListener("click", async () => {
     }
 });
 
+// write dummy file so the permission get asked all at once at beginning and not afterwards when writing the file
+async function writeDummyFile() {
+    const filename = `Berechtigungen.txt`;
+    const fileHandle = await folderHandle.getFileHandle(filename, {
+        create: true,
+    });
+    const writable = await fileHandle.createWritable();
+    await writable.write(`Datei nur Berechtigungen erstellt`);
+    await writable.close();
+}
+
 // ---------- File Saving ----------
 export async function saveFile(personArray, room, quantity) {
     try {
         // If no folder handle, ask user
-        if (!folderHandle) {
+        let isPermitted = await verifyPermission(folderHandle);
+        if (!isPermitted) {
             folderHandle = await window.showDirectoryPicker();
-            await saveFolderHandle(folderHandle);
+            await writeDummyFile();
+            dialog.close();
         }
 
         const date = new Date();

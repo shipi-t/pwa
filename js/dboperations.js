@@ -19,11 +19,11 @@ export function openDB() {
                 console.log('Object store "check_ins" created.');
             }
 
-            // Create "handles" object store
-            if (!db.objectStoreNames.contains("handles")) {
-                db.createObjectStore("handles");
-                console.log('Object store "handles" created.');
-            }
+            // // Create "handles" object store
+            // if (!db.objectStoreNames.contains("handles")) {
+            //     db.createObjectStore("handles");
+            //     console.log('Object store "handles" created.');
+            // }
         };
 
         request.onsuccess = (event) => {
@@ -56,19 +56,6 @@ export async function storeCheckIns(personArray, room) {
     }
 
     transaction.oncomplete = () => console.log("All check-ins processed successfully.");
-}
-
-// Load the folder handle
-export async function loadFolderHandle() {
-    const db = await openDB();
-    const tx = db.transaction("handles", "readonly");
-    const store = tx.objectStore("handles");
-
-    return new Promise((resolve) => {
-        const request = store.get("folderHandle");
-        request.onsuccess = () => resolve(request.result);
-        request.onerror = () => resolve(null);
-    });
 }
 
 export async function getCheckIns(imported = 99) {
