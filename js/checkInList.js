@@ -1,5 +1,6 @@
 import { getCheckIns, importCheckIn } from "./dboperations.js";
 import { fadeIn, fadeOut } from "./animations.js";
+import { resetPage } from "./index.js";
 
 const secretDialog = document.getElementById("dialogSecret");
 document.getElementById("checkInListBtn").addEventListener("click", () => {
@@ -15,7 +16,8 @@ document.getElementById("checkInListFilterAll").addEventListener("click", () => 
     showCheckInList(99);
 });
 document.getElementById("checkInListBack").addEventListener("click", () => {
-    location.reload();
+    // location.reload();
+    resetPage();
 });
 
 const secretInput = document.getElementById("secret");

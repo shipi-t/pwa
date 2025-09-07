@@ -43,9 +43,28 @@ startCheckInBtn.addEventListener("click", (e) => {
 
 cancelCheckInBtn.addEventListener("click", (e) => {
     e.preventDefault();
+    resetPage();
     // wenn file handler in IndexDB funktioniert, dann geht das so mit reload auch
-    location.reload();
+    // location.reload();
 });
+
+export function resetPage() {
+    personArray = [];
+    roomInput.readOnly = false;
+    quantityInput.readOnly = false;
+    roomInput.value = "";
+    quantityInput.value = "";
+    cancelCheckInBtn.classList.add("hidden");
+    startCheckInBtn.classList.remove("hidden");
+    tabsDiv.innerHTML = "";
+    personDiv.classList.add("hidden");
+    overview.classList.add("hidden");
+    document.querySelector("#overviewTable tbody").innerHTML = "";
+    document.getElementById("checkInList").classList.add("hidden");
+    document.querySelector("#checkInListTable tbody").innerHTML = "";
+    fadeIn(document.getElementById("checkInForm"));
+    fadeIn(document.getElementById("checkInListBtn"));
+}
 
 function showForm() {
     if (personArray.length < quantity) {
@@ -207,7 +226,7 @@ document.getElementById("finishBtn").addEventListener("click", async (e) => {
     if (!storeSuccess && !saveSuccess) {
         alert("Both operations failed!");
     } else {
-        location.reload();
+        resetPage();
     }
 });
 
