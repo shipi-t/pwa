@@ -87,7 +87,7 @@ export async function getCheckIns(imported = 99) {
     });
 }
 
-export async function importCheckIn(id) {
+export async function changeCheckInStatus(id, status) {
     const db = await openDB();
     const transaction = db.transaction("check_ins", "readwrite");
     const store = transaction.objectStore("check_ins");
@@ -98,7 +98,7 @@ export async function importCheckIn(id) {
         if (!existing) {
             console.log("Entry does not exist, id:", id);
         }
-        const updated = { ...existing, imported: 1 };
+        const updated = { ...existing, imported: status };
         store.put(updated);
     };
 }

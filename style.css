@@ -239,3 +239,7 @@ tr:hover {
         font-size: 18px;
     }
 }
+
+.importCheckInUndoBtn {
+    background-color: red;
+}
