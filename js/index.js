@@ -37,15 +37,12 @@ startCheckInBtn.addEventListener("click", (e) => {
     quantity = quantityInput.value;
     cancelCheckInBtn.classList.remove("hidden");
     startCheckInBtn.classList.add("hidden");
-
     showForm();
 });
 
 cancelCheckInBtn.addEventListener("click", (e) => {
     e.preventDefault();
     resetPage();
-    // wenn file handler in IndexDB funktioniert, dann geht das so mit reload auch
-    // location.reload();
 });
 
 export function resetPage() {
@@ -128,6 +125,13 @@ async function showPersonform(idx) {
     await fadeIn(personDiv);
 }
 
+function addNameToTab(obj, idx) {
+    let label = document.querySelector(`label[for="option${idx}"]`);
+    label.innerHTML = `${idx}${
+        obj.firstname != "" ? `-${obj.firstname}` : ""
+    }<input type="radio" id="option${idx}" name="choice" value="${idx}">`;
+}
+
 function writePersonIntoArray() {
     let idx = getActiveTab();
     if (idx < 0) return;
@@ -136,6 +140,7 @@ function writePersonIntoArray() {
         obj[id] = document.getElementById(id).value;
     }
     personArray[idx - 1] = obj;
+    addNameToTab(obj, idx);
 }
 
 document.getElementById("nextBtn").addEventListener("click", async (e) => {
@@ -144,7 +149,6 @@ document.getElementById("nextBtn").addEventListener("click", async (e) => {
         return;
     }
     writePersonIntoArray();
-    // personDiv.classList.add("hidden");
     await fadeOut(personDiv);
     showForm();
 });

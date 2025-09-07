@@ -4,6 +4,9 @@ import { resetPage } from "./index.js";
 
 let currentStatus = 0;
 
+const filterOpenBtn = document.getElementById("checkInListFilterOpen");
+const filterAllBtn = document.getElementById("checkInListFilterAll");
+
 const secretDialog = document.getElementById("dialogSecret");
 document.getElementById("checkInListBtn").addEventListener("click", () => {
     secretDialog.showModal();
@@ -11,12 +14,16 @@ document.getElementById("checkInListBtn").addEventListener("click", () => {
 document.getElementById("cancelSecretBtn").addEventListener("click", () => {
     secretDialog.close();
 });
-document.getElementById("checkInListFilterOpen").addEventListener("click", () => {
+filterOpenBtn.addEventListener("click", () => {
     currentStatus = 0;
+    filterAllBtn.classList.add("inactiveBtn");
+    filterOpenBtn.classList.remove("inactiveBtn");
     showCheckInList();
 });
-document.getElementById("checkInListFilterAll").addEventListener("click", () => {
+filterAllBtn.addEventListener("click", () => {
     currentStatus = 99;
+    filterAllBtn.classList.remove("inactiveBtn");
+    filterOpenBtn.classList.add("inactiveBtn");
     showCheckInList();
 });
 document.getElementById("checkInListBack").addEventListener("click", () => {
@@ -34,6 +41,7 @@ document.getElementById("secretBtn").addEventListener("click", (e) => {
         return;
     }
     secretDialog.close();
+    fadeOut(document.getElementById("checkInListBtn"));
     showCheckInList();
 });
 
@@ -70,7 +78,6 @@ async function showCheckInList() {
         console.log("Incomplete Item:", p);
     });
     fadeOut(document.getElementById("checkInForm"));
-    fadeOut(document.getElementById("checkInListBtn"));
     fadeIn(checkInList);
 }
 

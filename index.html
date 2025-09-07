@@ -3,28 +3,40 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/x-icon" href="/icons/logo.ico" />
+        <link rel="icon" type="image/png" href="/images/logo.ico" />
         <title>Check-In</title>
         <link rel="stylesheet" href="style.css" />
         <link rel="manifest" href="manifest.json" />
     </head>
     <body>
         <h1>Urfa Check-In</h1>
+        <select name="language" id="language">
+            <option value="DE">DE</option>
+            <option value="EN">EN</option>
+            <option value="NL">NL</option>
+            <option value="HR">HR</option>
+            <option value="ES">ES</option>
+            <option value="IT">IT</option>
+            <option value="FR">FR</option>
+            <option value="PL">PL</option>
+            <option value="HU">HU</option>
+            <option value="SK">SK</option>
+        </select>
         <div id="checkInListBtn">Check-Ins</div>
         <dialog id="dialogSecret" close>
-            <label for="secret">Kennwort eingeben</label>
+            <label for="secret" id="secretText">Kennwort eingeben</label>
             <input type="password" name="secret" id="secret" />
             <button id="secretBtn">Weiter</button>
             <button id="cancelSecretBtn">Abbrechen</button>
         </dialog>
         <dialog id="dialog" close>
-            <p>Es muss ein Ordner zum Speichern der Datei ausgewählt werden!</p>
+            <p id="chooseFolderTxt">Es muss ein Ordner zum Speichern der Datei ausgewählt werden!</p>
             <button id="chooseFolder">Ordner auswählen</button>
         </dialog>
         <div id="checkInList" class="hidden">
             <div class="checkInListMenu">
                 <button id="checkInListFilterOpen">Offene Check-In</button>
-                <button id="checkInListFilterAll">Alle Check-In</button>
+                <button id="checkInListFilterAll" class="inactiveBtn">Alle Check-In</button>
                 <button id="checkInListBack">Zurück</button>
             </div>
             <table id="checkInListTable">
@@ -50,10 +62,12 @@
         <div id="checkInForm">
             <fieldset>
                 <div class="inputfield">
-                    <label for="room">Zimmernummer: <input type="number" id="room" required /></label>
+                    <label for="room" id="roomNumberLabel">Zimmernummer:</label>
+                    <input type="number" id="room" required />
                 </div>
                 <div class="inputfield">
-                    <label for="quantity">Personen: <input type="number" id="quantity" min="1" required /></label>
+                    <label for="quantity" id="quantityLabel">Personen:</label>
+                    <input type="number" id="quantity" min="1" required />
                 </div>
                 <button id="startCheckInBtn">Check-In Starten</button>
                 <button id="cancelCheckInBtn" class="hidden">Check-In Abbrechen</button>
@@ -64,49 +78,40 @@
 
                 <div id="person" class="person hidden">
                     <div class="inputfield">
-                        <label for="firstname"
-                            >Vorname: <input type="text" name="firstname" id="firstname" pattern=".*\w.*" required
-                        /></label>
+                        <label for="firstname" id="firstnameLabel">Vorname</label
+                        ><input type="text" name="firstname" id="firstname" pattern=".*\w.*" required />
                     </div>
                     <div class="inputfield">
-                        <label for="lastname"
-                            >Familienname: <input type="text" name="lastname" id="lastname" pattern=".*\w.*" required
-                        /></label>
+                        <label for="lastname" id="lastnameLabel">Familienname</label>
+                        <input type="text" name="lastname" id="lastname" pattern=".*\w.*" required />
                     </div>
                     <div class="inputfield">
-                        <label for="email">E-Mail: <input type="email" name="email" id="email" required /></label>
+                        <label for="email" id="emailLabel">E-Mail</label>
+                        <input type="email" name="email" id="email" required />
                     </div>
                     <div class="inputfield">
-                        <label for="country"
-                            >Land: <input type="text" name="country" id="country" pattern=".*\w.*" required
-                        /></label>
+                        <label for="country" id="countryLabel">Land</label>
+                        <input type="text" name="country" id="country" pattern=".*\w.*" required />
                     </div>
                     <div class="inputfield">
-                        <label for="city"
-                            >Ort: <input type="text" name="city" id="city" pattern=".*\w.*" required
-                        /></label>
+                        <label for="city" id="cityLabel">Ort</label>
+                        <input type="text" name="city" id="city" pattern=".*\w.*" required />
                     </div>
                     <div class="inputfield">
-                        <label for="zipcode"
-                            >PLZ: <input type="text" name="zipcode" id="zipcode" pattern=".*\w.*" required
-                        /></label>
+                        <label for="zipcode" id="zipcodeLabel">PLZ</label>
+                        <input type="text" name="zipcode" id="zipcode" pattern=".*\w.*" required />
                     </div>
                     <div class="inputfield">
-                        <label for="street"
-                            >Straße: <input type="text" name="street" id="street" pattern=".*\w.*" required
-                        /></label>
+                        <label for="street" id="streetLabel">Straße</label>
+                        <input type="text" name="street" id="street" pattern=".*\w.*" required />
                     </div>
                     <div class="inputfield">
-                        <label for="housenumber"
-                            >Hausnummer:
-                            <input type="text" name="housenumber" id="housenumber" pattern=".*\w.*" required
-                        /></label>
+                        <label for="housenumber" id="housenumberLabel">Hausnummer</label>
+                        <input type="text" name="housenumber" id="housenumber" pattern=".*\w.*" required />
                     </div>
-                    <div class="inputfield">
-                        <label for="copyAddress"
-                            >Adresse für nächste Person kopieren
-                            <input type="checkbox" name="copyAddress" id="copyAddress"
-                        /></label>
+                    <div class="copyAddressDiv">
+                        <label for="copyAddress" id="copyAddressLabel">Adresse für nächste Person kopieren</label>
+                        <input type="checkbox" name="copyAddress" id="copyAddress" />
                     </div>
                     <button class="nextBtn" id="nextBtn">Weiter</button>
                 </div>
@@ -137,5 +142,6 @@
         <script type="module" src="./js/fileoperations.js"></script>
         <script type="module" src="./js/checkInList.js"></script>
         <script type="module" src="./js/index.js"></script>
+        <script type="module" src="./js/language.js"></script>
     </body>
 </html>

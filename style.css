@@ -1,3 +1,24 @@
+:root {
+    --primary-color: #205c1c;
+    --secondary-color: #ccc;
+    --light-gray: #eee;
+    --border-color: #ddd;
+    --hover-bg-color: #e6f7e6;
+    --table-row-even: #f9f9f9;
+    --cancel-gray: #8e8e8e;
+    --finish-bg: #f0f2f5;
+
+    --font-size-base: 18px;
+    --font-size-small: 13px;
+
+    --border-radius-small: 8px;
+    --border-radius-large: 20px;
+
+    --transition-speed: 0.3s;
+    --box-shadow-light: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --box-shadow-table: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
 * {
     box-sizing: border-box;
 }
@@ -10,12 +31,37 @@ html {
 
 dialog {
     padding: 25px;
-    border-radius: 20px;
+    border-radius: var(--border-radius-large);
     border-width: 1px;
-    border-color: #205c1c;
+    border-color: var(--primary-color);
 }
 dialog * {
     margin-top: 10px;
+}
+
+select#language {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #205c1c;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    appearance: none; /* remove default browser arrow */
+    outline: none;
+    position: absolute;
+    left: 20px;
+    top: 10px;
+}
+
+/* Style the dropdown options */
+select#language option {
+    border: 1px solid #205c1c; /* same as select border */
+    padding: 10px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #205c1c;
 }
 
 #checkInForm,
@@ -25,12 +71,25 @@ dialog * {
     margin-top: 20px;
 }
 
+#checkInList {
+    padding: 20px;
+}
+
 .checkInListMenu {
     padding-bottom: 20px;
+    display: flex;
 }
 .checkInListMenu > button {
     width: auto;
     margin-right: 10px;
+}
+#checkInListBack {
+    margin-left: auto;
+}
+.inactiveBtn {
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    background-color: white;
 }
 
 #checkInListBtn {
@@ -38,17 +97,17 @@ dialog * {
     position: absolute;
     right: 20px;
     top: 10px;
-    background-color: #ccc;
-    color: #205c1c;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
     border-radius: 12px;
     transition: transform 1s ease-in-out;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow-light);
     padding: 10px;
     cursor: pointer;
 }
 
 h1 {
-    color: #205c1c;
+    color: var(--primary-color);
     text-align: center;
     font-weight: 700;
     margin-bottom: 0px;
@@ -59,13 +118,13 @@ fieldset {
     display: grid;
     align-items: center;
     grid-template-columns: 3fr 3fr 1fr;
-    border-top: 2px solid #eee;
-    border-bottom: 2px solid #eee;
+    border-top: 2px solid var(--light-gray);
+    border-bottom: 2px solid var(--light-gray);
     padding: 20px 10px;
 }
 
 label {
-    font-size: 18px;
+    font-size: var(--font-size-base);
 }
 
 fieldset label,
@@ -83,7 +142,11 @@ fieldset input {
 
 .tabs {
     display: flex;
-    position: relative;
+    flex-wrap: wrap;
+    /* position: relative; */
+}
+.tabs label {
+    font-size: 16px;
 }
 
 input[type="radio"] {
@@ -93,18 +156,18 @@ input[type="radio"] {
 /* 2. Style the labels to look like buttons */
 .radio-label {
     padding: 10px 20px;
-    border: 2px solid #ccc;
-    border-radius: 20px;
+    border: 2px solid var(--secondary-color);
+    border-radius: var(--border-radius-large);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-speed) ease;
     margin-right: 10px;
 }
 
 /* 3. Style the label when its radio button is checked */
 .active-tab {
-    background-color: #205c1c;
+    background-color: var(--primary-color);
     color: white;
-    border-color: #205c1c;
+    border-color: var(--primary-color);
 }
 
 .inputfield {
@@ -121,45 +184,46 @@ input {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 18px;
+    border: 1px solid var(--secondary-color);
+    border-radius: var(--border-radius-small);
+    font-size: var(--font-size-base);
+}
+
+.copyAddressDiv {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 label[for="copyAddress"] {
     padding-top: 10px;
-    display: flex;
-    align-items: center;
     font-weight: 600;
     color: #333;
-    gap: 8px;
-    vertical-align: baseline;
 }
 
 #copyAddress {
     width: 22px;
     height: 22px;
-    margin-left: 8px;
-    vertical-align: bottom;
+    margin-top: 15px;
 }
 
 button {
     width: 100%;
     padding: 10px;
     border: none;
-    border-radius: 8px;
+    border-radius: var(--border-radius-small);
     color: white;
-    background-color: #205c1c;
+    background-color: var(--primary-color);
     font-size: 17px;
     font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color var(--transition-speed) ease;
 }
 
 #cancelCheckInBtn,
 #cancelSecretBtn {
     width: 100%;
-    background-color: #8e8e8e;
+    background-color: var(--cancel-gray);
 }
 #startCheckInBtn {
     width: 100%;
@@ -185,38 +249,38 @@ table {
     width: 100%;
     border-collapse: collapse;
     background-color: #ffffff;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    box-shadow: var(--box-shadow-table);
+    border-radius: var(--border-radius-small);
     overflow: hidden; /* Ensures rounded corners on children */
-    font-size: 13px;
+    font-size: var(--font-size-small);
 }
 
 th,
 td {
     text-align: left;
     padding: 12px 15px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border-color);
 }
 
 th {
-    background-color: #ccc;
-    color: #205c1c;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
     font-weight: 700;
 }
 
 tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: var(--table-row-even);
 }
 
 tr:hover {
-    background-color: #e6f7e6;
+    background-color: var(--hover-bg-color);
 }
 
 #finishBtn {
     width: auto;
-    background-color: #f0f2f5;
-    color: #205c1c;
-    border: 1px solid #205c1c;
+    background-color: var(--finish-bg);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
 }
 
 .hidden {
@@ -224,20 +288,14 @@ tr:hover {
 }
 
 .thanks {
-    color: #205c1c;
-    font-size: 18px;
+    color: var(--primary-color);
+    font-size: var(--font-size-base);
     font-weight: 600;
 }
 
 #returnTablet {
     /* font-size: 20px; */
     font-weight: 800;
-}
-
-@media (min-width: 1100px) {
-    table {
-        font-size: 18px;
-    }
 }
 
 .importCheckInUndoBtn {

@@ -18,12 +18,6 @@ export function openDB() {
                 });
                 console.log('Object store "check_ins" created.');
             }
-
-            // // Create "handles" object store
-            // if (!db.objectStoreNames.contains("handles")) {
-            //     db.createObjectStore("handles");
-            //     console.log('Object store "handles" created.');
-            // }
         };
 
         request.onsuccess = (event) => {
@@ -44,12 +38,13 @@ export async function storeCheckIns(personArray, room) {
     const transaction = db.transaction(["check_ins"], "readwrite");
     const objectStore = transaction.objectStore("check_ins");
 
+    let d = new Date();
     for (let person of personArray) {
         let newCheckin = structuredClone(person);
+        d.setTime(d.getTime() + 1000); // for sorting purpose to get always same result
         newCheckin.room = room;
-        newCheckin.date = new Date();
+        newCheckin.date = d;
         newCheckin.imported = 0;
-
         const addRequest = objectStore.add(newCheckin);
         addRequest.onsuccess = () => console.log("Saved:", newCheckin);
         addRequest.onerror = () => console.error("Error adding check-in:", addRequest.error);
