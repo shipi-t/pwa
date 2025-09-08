@@ -28,9 +28,9 @@ chooseFolderBtn.addEventListener("click", async () => {
         folderHandle = await window.showDirectoryPicker();
         await writeDummyFile();
         dialog.close();
-        console.log("New folder handle saved.");
+        // console.log("New folder handle saved.");
     } catch (err) {
-        console.error("Folder selection canceled or failed:", err);
+        // console.error("Folder selection canceled or failed:", err);
     }
 });
 
@@ -71,14 +71,14 @@ export async function saveFile(personArray, room, quantity) {
         for (let p of personArray) {
             await writable.write(`Person ${personArray.indexOf(p) + 1}\n`);
             await writable.write(
-                `Vorname: ${p.firstname}\nNachname: ${p.lastname}\nE-Mail: ${p.email}\nLand: ${p.country}\nOrt: ${p.city}\nPLZ: ${p.zipcode}\nStraße: ${p.street}\nHausnummer: ${p.housenumber}\n\n`
+                `Vorname: ${p.firstname}\nNachname: ${p.lastname}\nE-Mail: ${p.email}\nLand: ${p.country}\nOrt: ${p.city}\nPLZ: ${p.zipcode}\nStraße: ${p.street}\nNationalität: ${p.nationality}\n\n`
             );
         }
 
         await writable.close();
-        console.log(`Saved file: ${filename}`);
+        // console.log(`Saved file: ${filename}`);
     } catch (err) {
-        console.error("Failed to save file:", err);
+        // console.error("Failed to save file:", err);
     }
 }
 

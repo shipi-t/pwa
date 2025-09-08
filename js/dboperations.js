@@ -16,18 +16,18 @@ export function openDB() {
                 objectStore.createIndex("imported", "imported", {
                     unique: false,
                 });
-                console.log('Object store "check_ins" created.');
+                // console.log('Object store "check_ins" created.');
             }
         };
 
         request.onsuccess = (event) => {
             const db = event.target.result;
-            console.log("Database opened successfully.");
+            // console.log("Database opened successfully.");
             resolve(db);
         };
 
         request.onerror = (event) => {
-            console.error("Database error:", event.target.errorCode);
+            // console.error("Database error:", event.target.errorCode);
             reject(event.target.error);
         };
     });
@@ -46,11 +46,17 @@ export async function storeCheckIns(personArray, room) {
         newCheckin.date = d;
         newCheckin.imported = 0;
         const addRequest = objectStore.add(newCheckin);
-        addRequest.onsuccess = () => console.log("Saved:", newCheckin);
-        addRequest.onerror = () => console.error("Error adding check-in:", addRequest.error);
+        addRequest.onsuccess = () => {
+            // console.log("Saved:", newCheckin);
+        };
+        addRequest.onerror = () => {
+            // console.error("Error adding check-in:", addRequest.error);
+        };
     }
 
-    transaction.oncomplete = () => console.log("All check-ins processed successfully.");
+    transaction.oncomplete = () => {
+        // console.log("All check-ins processed successfully.");
+    };
 }
 
 export async function getCheckIns(imported = 99) {
@@ -78,9 +84,37 @@ export async function changeCheckInStatus(id, status) {
     getRequest.onsuccess = () => {
         const existing = getRequest.result;
         if (!existing) {
-            console.log("Entry does not exist, id:", id);
+            // console.log("Entry does not exist, id:", id);
         }
         const updated = { ...existing, imported: status };
         store.put(updated);
     };
+}
+
+export async function clearOldCheckIns() {
+    const db = await openDB(); // your own function to open the DB
+    const tx = db.transaction("check_ins", "readwrite");
+    const store = tx.objectStore("check_ins");
+
+    const oneMonthAgo = new Date();
+    oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 3);
+
+    return new Promise((resolve, reject) => {
+        const request = store.openCursor();
+
+        request.onsuccess = (event) => {
+            const cursor = event.target.result;
+            if (cursor) {
+                const recordDate = new Date(cursor.value.date);
+                if (recordDate < oneMonthAgo) {
+                    cursor.delete(); // delete this record
+                }
+                cursor.continue(); // move to next record
+            } else {
+                resolve(); // done iterating
+            }
+        };
+
+        request.onerror = () => reject(request.error);
+    });
 }

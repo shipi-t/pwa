@@ -1,12 +1,16 @@
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker
         .register("./service-worker.js")
-        .then(() => console.log("Service Worker registered"))
-        .catch((err) => console.error("Service Worker registration failed:", err));
+        .then(() => {
+            // console.log("Service Worker registered");
+        })
+        .catch((err) => {
+            // console.error("Service Worker registration failed:", err);
+        });
 }
 
 import { fadeIn, fadeOut } from "./animations.js";
-import { storeCheckIns } from "./dboperations.js";
+import { storeCheckIns, clearOldCheckIns } from "./dboperations.js";
 import { saveFile } from "./fileoperations.js";
 
 const roomInput = document.getElementById("room");
@@ -18,7 +22,7 @@ const overview = document.querySelector(".overview");
 const tabsDiv = document.querySelector(".tabs");
 const focusableElements = document.querySelectorAll("input");
 
-const inputFieldsIDs = ["firstname", "lastname", "email", "country", "city", "street", "zipcode", "housenumber"];
+const inputFieldsIDs = ["firstname", "lastname", "email", "country", "city", "street", "zipcode", "nationality"];
 
 let room = "";
 let quantity = 0;
@@ -104,7 +108,7 @@ async function showOverview() {
                 <td>${p.city}</td>
                 <td>${p.zipcode}</td>
                 <td>${p.street}</td>
-                <td>${p.housenumber}</td>
+                <td>${p.nationality}</td>
             </tr>
         `;
     }
@@ -245,4 +249,8 @@ document.addEventListener("keydown", (event) => {
             focusableElements[nextIndex].focus();
         }
     }
+});
+
+addEventListener("DOMContentLoaded", async () => {
+    clearOldCheckIns();
 });

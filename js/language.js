@@ -1,54 +1,58 @@
 const selection = document.getElementById("language");
 
 const languageDict = {
-    // secretText: {
-    //     DE: "Kennwort eingeben",
-    //     EN: "Enter password",
-    //     NL: "Wachtwoord invoeren",
-    //     HR: "Unesite lozinku",
-    //     ES: "Introducir contraseña",
-    //     IT: "Inserisci password",
-    //     FR: "Entrez le mot de passe",
-    //     PL: "Wprowadź hasło",
-    //     HU: "Adja meg a jelszót",
-    //     SK: "Zadajte heslo"
-    // },
-    // cancelSecretBtn: {
-    //     DE: "Abbrechen",
-    //     EN: "Cancel",
-    //     NL: "Annuleren",
-    //     HR: "Odustani",
-    //     ES: "Cancelar",
-    //     IT: "Annulla",
-    //     FR: "Annuler",
-    //     PL: "Anuluj",
-    //     HU: "Mégse",
-    //     SK: "Zrušiť"
-    // },
-    // chooseFolderTxt: {
-    //     DE: "Es muss ein Ordner zum Speichern der Datei ausgewählt werden!",
-    //     EN: "A folder must be selected to save the file!",
-    //     NL: "Er moet een map worden geselecteerd om het bestand op te slaan!",
-    //     HR: "Morate odabrati mapu za spremanje datoteke!",
-    //     ES: "¡Debe seleccionar una carpeta para guardar el archivo!",
-    //     IT: "È necessario selezionare una cartella per salvare il file!",
-    //     FR: "Un dossier doit être sélectionné pour enregistrer le fichier !",
-    //     PL: "Należy wybrać folder do zapisania pliku!",
-    //     HU: "Mappát kell kiválasztani a fájl mentéséhez!",
-    //     SK: "Je potrebné vybrať priečinok na uloženie súboru!"
-    // },
-    // chooseFolder: {
-    //     DE: "Ordner auswählen",
-    //     EN: "Choose Folder",
-    //     NL: "Map kiezen",
-    //     HR: "Odaberi mapu",
-    //     ES: "Seleccionar carpeta",
-    //     IT: "Scegli cartella",
-    //     FR: "Choisir un dossier",
-    //     PL: "Wybierz folder",
-    //     HU: "Mappa kiválasztása",
-    //     SK: "Vybrať priečinok"
-    // },
+    secretText: {
+        DE: "Kennwort eingeben",
+        EN: "Enter password",
+        NL: "Wachtwoord invoeren",
+        HR: "Unesite lozinku",
+        ES: "Introducir contraseña",
+        IT: "Inserisci password",
+        FR: "Entrez le mot de passe",
+        PL: "Wprowadź hasło",
+        HU: "Adja meg a jelszót",
+        SK: "Zadajte heslo",
+        CZ: "Zadejte heslo",
+    },
+    cancelSecretBtn: {
+        DE: "Abbrechen",
+        EN: "Cancel",
+        NL: "Annuleren",
+        HR: "Odustani",
+        ES: "Cancelar",
+        IT: "Annulla",
+        FR: "Annuler",
+        PL: "Anuluj",
+        HU: "Mégse",
+        SK: "Zrušiť",
+        CZ: "Zrušit",
+    },
+    chooseFolderTxt: {
+        DE: "Es muss ein Ordner zum Speichern der Datei ausgewählt werden!",
+        EN: "A folder must be selected to save the file!",
+        NL: "Er moet een map worden geselecteerd om het bestand op te slaan!",
+        HR: "Morate odabrati mapu za spremanje datoteke!",
+        ES: "¡Debe seleccionar una carpeta para guardar el archivo!",
+        IT: "È necessario selezionare una cartella per salvare il file!",
+        FR: "Un dossier doit être sélectionné pour enregistrer le fichier !",
+        PL: "Należy wybrać folder do zapisania pliku!",
+        HU: "Mappát kell kiválasztani a fájl mentéséhez!",
+        SK: "Je potrebné vybrať priečinok na uloženie súboru!",
+        CZ: "Musíte vybrat složku pro uložení souboru!",
+    },
+    chooseFolder: {
+        DE: "Ordner auswählen",
+        EN: "Choose Folder",
+        NL: "Map kiezen",
+        HR: "Odaberi mapu",
+        ES: "Seleccionar carpeta",
+        IT: "Scegli cartella",
+        FR: "Choisir un dossier",
+        PL: "Wybierz folder",
+        HU: "Mappa kiválasztása",
+        SK: "Vybrať priečinok",
+        CZ: "Vybrat složku",
+    },
     roomNumberLabel: {
         DE: "Zimmernummer",
         EN: "Room Number",
@@ -60,6 +64,7 @@ const languageDict = {
         PL: "Numer pokoju",
         HU: "Szobaszám",
         SK: "Číslo izby",
+        CZ: "Číslo pokoje",
     },
     quantityLabel: {
         DE: "Personen",
@@ -72,6 +77,7 @@ const languageDict = {
         PL: "Osoby",
         HU: "Vendégek",
         SK: "Osoby",
+        CZ: "Osoby",
     },
     startCheckInBtn: {
         DE: "Check-In Starten",
@@ -84,6 +90,7 @@ const languageDict = {
         PL: "Rozpocznij zameldowanie",
         HU: "Bejelentkezés indítása",
         SK: "Spustiť check-in",
+        CZ: "Zahájit check-in",
     },
     cancelCheckInBtn: {
         DE: "Check-In Abbrechen",
@@ -96,6 +103,7 @@ const languageDict = {
         PL: "Anuluj zameldowanie",
         HU: "Bejelentkezés megszakítása",
         SK: "Zrušiť check-in",
+        CZ: "Zrušit check-in",
     },
     firstnameLabel: {
         DE: "Vorname",
@@ -108,6 +116,7 @@ const languageDict = {
         PL: "Imię",
         HU: "Keresztnév",
         SK: "Meno",
+        CZ: "Jméno",
     },
     lastnameLabel: {
         DE: "Familienname",
@@ -120,6 +129,7 @@ const languageDict = {
         PL: "Nazwisko",
         HU: "Vezetéknév",
         SK: "Priezvisko",
+        CZ: "Příjmení",
     },
     emailLabel: {
         DE: "E-Mail",
@@ -132,6 +142,7 @@ const languageDict = {
         PL: "E-mail",
         HU: "E-mail",
         SK: "E-mail",
+        CZ: "E-mail",
     },
     countryLabel: {
         DE: "Land",
@@ -144,6 +155,7 @@ const languageDict = {
         PL: "Kraj",
         HU: "Ország",
         SK: "Krajina",
+        CZ: "Země",
     },
     cityLabel: {
         DE: "Ort",
@@ -156,6 +168,7 @@ const languageDict = {
         PL: "Miasto",
         HU: "Város",
         SK: "Mesto",
+        CZ: "Město",
     },
     zipcodeLabel: {
         DE: "PLZ",
@@ -168,6 +181,7 @@ const languageDict = {
         PL: "Kod pocztowy",
         HU: "Irányítószám",
         SK: "PSČ",
+        CZ: "PSČ",
     },
     streetLabel: {
         DE: "Straße",
@@ -180,18 +194,7 @@ const languageDict = {
         PL: "Ulica",
         HU: "Utca",
         SK: "Ulica",
-    },
-    housenumberLabel: {
-        DE: "Hausnummer",
-        EN: "House Number",
-        NL: "Huisnummer",
-        HR: "Kućni broj",
-        ES: "Número",
-        IT: "Numero civico",
-        FR: "Numéro",
-        PL: "Numer domu",
-        HU: "Házszám",
-        SK: "Súpisné číslo",
+        CZ: "Ulice",
     },
     copyAddressLabel: {
         DE: "Adresse für nächste Person kopieren",
@@ -204,6 +207,7 @@ const languageDict = {
         PL: "Skopiuj adres dla następnej osoby",
         HU: "Cím másolása a következő személyhez",
         SK: "Skopírovať adresu pre ďalšiu osobu",
+        CZ: "Kopírovat adresu pro další osobu",
     },
     nextBtn: {
         DE: "Weiter",
@@ -216,6 +220,7 @@ const languageDict = {
         PL: "Dalej",
         HU: "Következő",
         SK: "Ďalej",
+        CZ: "Další",
     },
     tableFirstname: {
         DE: "Vorname",
@@ -228,6 +233,7 @@ const languageDict = {
         PL: "Imię",
         HU: "Keresztnév",
         SK: "Meno",
+        CZ: "Jméno",
     },
     tableLastname: {
         DE: "Nachname",
@@ -240,6 +246,7 @@ const languageDict = {
         PL: "Nazwisko",
         HU: "Vezetéknév",
         SK: "Priezvisko",
+        CZ: "Příjmení",
     },
     tableEmail: {
         DE: "E-Mail",
@@ -252,6 +259,7 @@ const languageDict = {
         PL: "E-mail",
         HU: "E-mail",
         SK: "E-mail",
+        CZ: "E-mail",
     },
     tableCountry: {
         DE: "Land",
@@ -264,6 +272,7 @@ const languageDict = {
         PL: "Kraj",
         HU: "Ország",
         SK: "Krajina",
+        CZ: "Země",
     },
     tableCity: {
         DE: "Ort",
@@ -276,6 +285,7 @@ const languageDict = {
         PL: "Miasto",
         HU: "Város",
         SK: "Mesto",
+        CZ: "Město",
     },
     tableZipcode: {
         DE: "PLZ",
@@ -288,6 +298,7 @@ const languageDict = {
         PL: "Kod pocztowy",
         HU: "Irányítószám",
         SK: "PSČ",
+        CZ: "PSČ",
     },
     tableStreet: {
         DE: "Straße",
@@ -300,18 +311,33 @@ const languageDict = {
         PL: "Ulica",
         HU: "Utca",
         SK: "Ulica",
+        CZ: "Ulice",
     },
-    tableHousenumber: {
-        DE: "Nr",
-        EN: "No.",
-        NL: "Nr.",
-        HR: "Br.",
-        ES: "Nº",
-        IT: "N.",
-        FR: "N°",
-        PL: "Nr",
-        HU: "Sz.",
-        SK: "Č.",
+    tableNationality: {
+        DE: "Nationalität",
+        EN: "Nationality",
+        NL: "Nationaliteit",
+        HR: "Nacionalnost",
+        ES: "Nacionalidad",
+        IT: "Nazionalità",
+        FR: "Nationalité",
+        PL: "Narodowość",
+        HU: "Állampolgárság",
+        SK: "Národnosť",
+        CZ: "Národnost",
+    },
+    nationalityLabel: {
+        DE: "Nationalität",
+        EN: "Nationality",
+        NL: "Nationaliteit",
+        HR: "Nacionalnost",
+        ES: "Nacionalidad",
+        IT: "Nazionalità",
+        FR: "Nationalité",
+        PL: "Narodowość",
+        HU: "Állampolgárság",
+        SK: "Národnosť",
+        CZ: "Národnost",
     },
     thanks: {
         DE: "Dankeschön!",
@@ -324,6 +350,7 @@ const languageDict = {
         PL: "Dziękujemy!",
         HU: "Köszönjük!",
         SK: "Ďakujeme!",
+        CZ: "Děkujeme!",
     },
     returnTablet: {
         DE: "Bitte übergeben Sie das Tablet wieder an die Rezeption.",
@@ -336,6 +363,7 @@ const languageDict = {
         PL: "Proszę zwrócić tablet na recepcję.",
         HU: "Kérjük, adja vissza a tabletet a recepcióra.",
         SK: "Prosím, vráťte tablet na recepciu.",
+        CZ: "Prosím, vraťte tablet na recepci.",
     },
     finishBtn: {
         DE: "Von der Rezeption bestätigt",
@@ -348,12 +376,15 @@ const languageDict = {
         PL: "Potwierdzone przez recepcję",
         HU: "Recepció által megerősítve",
         SK: "Potvrdené recepciou",
+        CZ: "Potvrzeno recepcí",
     },
 };
 
 selection.addEventListener("change", () => {
     const lang = selection.value;
     for (let id in languageDict) {
-        document.getElementById(id).innerHTML = languageDict[id][lang];
+        try {
+            document.getElementById(id).innerHTML = languageDict[id][lang];
+        } catch {}
     }
 });

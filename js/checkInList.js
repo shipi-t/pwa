@@ -64,7 +64,7 @@ async function showCheckInList() {
                 <td>${p.city}</td>
                 <td>${p.zipcode}</td>
                 <td>${p.street}</td>
-                <td>${p.housenumber}</td>
+                <td>${p.nationality}</td>
                 ${
                     p.imported == 0
                         ? `<td>&#10060;</td>
@@ -75,7 +75,6 @@ async function showCheckInList() {
                 
             </tr>
         `;
-        console.log("Incomplete Item:", p);
     });
     fadeOut(document.getElementById("checkInForm"));
     fadeIn(checkInList);

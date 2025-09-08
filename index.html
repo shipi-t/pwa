@@ -12,14 +12,15 @@
         <h1>Urfa Check-In</h1>
         <select name="language" id="language">
             <option value="DE">DE</option>
+            <option value="CZ">CZ</option>
             <option value="EN">EN</option>
-            <option value="NL">NL</option>
-            <option value="HR">HR</option>
             <option value="ES">ES</option>
-            <option value="IT">IT</option>
             <option value="FR">FR</option>
-            <option value="PL">PL</option>
+            <option value="HR">HR</option>
             <option value="HU">HU</option>
+            <option value="IT">IT</option>
+            <option value="NL">NL</option>
+            <option value="PL">PL</option>
             <option value="SK">SK</option>
         </select>
         <div id="checkInListBtn">Check-Ins</div>
@@ -51,7 +52,7 @@
                         <th>Ort</th>
                         <th>PLZ</th>
                         <th>Straße</th>
-                        <th>Nr</th>
+                        <th>Nation.</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -106,8 +107,8 @@
                         <input type="text" name="street" id="street" pattern=".*\w.*" required />
                     </div>
                     <div class="inputfield">
-                        <label for="housenumber" id="housenumberLabel">Hausnummer</label>
-                        <input type="text" name="housenumber" id="housenumber" pattern=".*\w.*" required />
+                        <label for="nationality" id="nationalityLabel">Nationalität</label>
+                        <input type="text" name="nationality" id="nationality" pattern=".*\w.*" required />
                     </div>
                     <div class="copyAddressDiv">
                         <label for="copyAddress" id="copyAddressLabel">Adresse für nächste Person kopieren</label>
@@ -126,7 +127,7 @@
                                 <th id="tableCity">Ort</th>
                                 <th id="tableZipcode">PLZ</th>
                                 <th id="tableStreet">Straße</th>
-                                <th id="tableHousenumber">Nr</th>
+                                <th id="tableNationality">Nationalität</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
