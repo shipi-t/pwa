@@ -71,7 +71,11 @@ export async function saveFile(personArray, room, quantity) {
         for (let p of personArray) {
             await writable.write(`Person ${personArray.indexOf(p) + 1}\n`);
             await writable.write(
-                `Vorname: ${p.firstname}\nNachname: ${p.lastname}\nE-Mail: ${p.email}\nLand: ${p.country}\nOrt: ${p.city}\nPLZ: ${p.zipcode}\nStraße: ${p.street}\nNationalität: ${p.nationality}\n\n`
+                `Name: ${p.name}\Geburtstag: ${getFormatDateForFilename(false, p.birthdate)}\nKontakt: ${
+                    p.contact
+                }\nLand: ${p.country}\nOrt: ${p.city}\nPLZ: ${p.zipcode}\nStraße: ${p.street}\nNationalität: ${
+                    p.nationality
+                }\n\n`
             );
         }
 

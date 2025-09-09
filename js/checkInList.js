@@ -57,14 +57,14 @@ async function showCheckInList() {
             <tr>
                 <td>${formatDateTime(p.date)}</td>
                 <td>${p.room}</td>
-                <td>${p.firstname}</td>
-                <td>${p.lastname}</td>
-                <td>${p.email}</td>
+                <td>${p.name}</td>
+                <td>${formatDateTime(p.birthdate)}</td>
+                <td>${p.nationality}</td>
+                <td>${p.contact}</td>
                 <td>${p.country}</td>
                 <td>${p.city}</td>
                 <td>${p.zipcode}</td>
                 <td>${p.street}</td>
-                <td>${p.nationality}</td>
                 ${
                     p.imported == 0
                         ? `<td>&#10060;</td>
@@ -85,7 +85,7 @@ function formatDateTime(dateString) {
     const day = String(date.getDate()).padStart(2, "0");
     const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
     const year = date.getFullYear();
-    return `${day}-${month}-${year}`;
+    return `${day}.${month}.${year}`;
 }
 
 // weil wir in einem modul sind ist die funktion selbst nich global also wirds nicht gefunden... deswegen so:

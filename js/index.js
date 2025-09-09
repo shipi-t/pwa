@@ -22,7 +22,7 @@ const overview = document.querySelector(".overview");
 const tabsDiv = document.querySelector(".tabs");
 const focusableElements = document.querySelectorAll("input");
 
-const inputFieldsIDs = ["firstname", "lastname", "email", "country", "city", "street", "zipcode", "nationality"];
+const inputFieldsIDs = ["name", "birthdate", "contact", "country", "city", "street", "zipcode", "nationality"];
 
 let room = "";
 let quantity = 0;
@@ -101,9 +101,9 @@ async function showOverview() {
     for (let p of personArray) {
         tableBody.innerHTML += `
             <tr>
-                <td>${p.firstname}</td>
-                <td>${p.lastname}</td>
-                <td>${p.email}</td>
+                <td>${p.name}</td>
+                <td>${p.birthdate}</td>
+                <td>${p.contact}</td>
                 <td>${p.country}</td>
                 <td>${p.city}</td>
                 <td>${p.zipcode}</td>
@@ -123,8 +123,6 @@ async function showPersonform(idx) {
         ele.value = p[id];
         ele.style.borderColor = "#ccc";
     }
-    // overview.classList.add("hidden");
-    // personDiv.classList.remove("hidden");
     await fadeOut(overview);
     await fadeIn(personDiv);
 }
@@ -132,7 +130,7 @@ async function showPersonform(idx) {
 function addNameToTab(obj, idx) {
     let label = document.querySelector(`label[for="option${idx}"]`);
     label.innerHTML = `${idx}${
-        obj.firstname != "" ? `-${obj.firstname}` : ""
+        obj.name != "" ? `-${obj.name}` : ""
     }<input type="radio" id="option${idx}" name="choice" value="${idx}">`;
 }
 
@@ -201,9 +199,10 @@ function isValid(validation) {
 function getNewObject() {
     if (personArray.length != 0 && document.getElementById("copyAddress").checked) {
         let p = structuredClone(personArray[personArray.length - 1]);
-        p.firstname = "";
-        p.lastname = "";
-        p.email = "";
+        p.name = "";
+        p.nationality = "";
+        p.contact = "";
+        p.birthdate = "";
         return p;
     } else {
         const obj = {};

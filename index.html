@@ -45,14 +45,14 @@
                     <tr>
                         <th>Datum</th>
                         <th>Zi</th>
-                        <th>Vorname</th>
-                        <th>Nachname</th>
-                        <th>E-Mail</th>
+                        <th>Name</th>
+                        <th>Geb.</th>
+                        <th>Nation.</th>
+                        <th>Kontakt</th>
                         <th>Land</th>
                         <th>Ort</th>
                         <th>PLZ</th>
                         <th>Straße</th>
-                        <th>Nation.</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -64,7 +64,7 @@
             <fieldset>
                 <div class="inputfield">
                     <label for="room" id="roomNumberLabel">Zimmernummer:</label>
-                    <input type="number" id="room" required />
+                    <input type="text" id="room" required />
                 </div>
                 <div class="inputfield">
                     <label for="quantity" id="quantityLabel">Personen:</label>
@@ -79,16 +79,20 @@
 
                 <div id="person" class="person hidden">
                     <div class="inputfield">
-                        <label for="firstname" id="firstnameLabel">Vorname</label
-                        ><input type="text" name="firstname" id="firstname" pattern=".*\w.*" required />
+                        <label for="name" id="nameLabel">Vor- und Nachname</label
+                        ><input type="text" name="name" id="name" pattern=".*\w.*" required />
                     </div>
                     <div class="inputfield">
-                        <label for="lastname" id="lastnameLabel">Familienname</label>
-                        <input type="text" name="lastname" id="lastname" pattern=".*\w.*" required />
+                        <label for="birthdate" id="birthdateLabel">Geburtstag</label>
+                        <input type="date" name="birthdate" id="birthdate" pattern=".*\w.*" required />
                     </div>
                     <div class="inputfield">
-                        <label for="email" id="emailLabel">E-Mail</label>
-                        <input type="email" name="email" id="email" required />
+                        <label for="contact" id="contactLabel">E-Mail/Telefon</label>
+                        <input type="contact" name="contact" id="contact" required />
+                    </div>
+                    <div class="inputfield">
+                        <label for="nationality" id="nationalityLabel">Nationalität</label>
+                        <input type="text" name="nationality" id="nationality" pattern=".*\w.*" required />
                     </div>
                     <div class="inputfield">
                         <label for="country" id="countryLabel">Land</label>
@@ -99,16 +103,12 @@
                         <input type="text" name="city" id="city" pattern=".*\w.*" required />
                     </div>
                     <div class="inputfield">
-                        <label for="zipcode" id="zipcodeLabel">PLZ</label>
-                        <input type="text" name="zipcode" id="zipcode" pattern=".*\w.*" required />
-                    </div>
-                    <div class="inputfield">
                         <label for="street" id="streetLabel">Straße</label>
                         <input type="text" name="street" id="street" pattern=".*\w.*" required />
                     </div>
                     <div class="inputfield">
-                        <label for="nationality" id="nationalityLabel">Nationalität</label>
-                        <input type="text" name="nationality" id="nationality" pattern=".*\w.*" required />
+                        <label for="zipcode" id="zipcodeLabel">PLZ</label>
+                        <input type="text" name="zipcode" id="zipcode" pattern=".*\w.*" required />
                     </div>
                     <div class="copyAddressDiv">
                         <label for="copyAddress" id="copyAddressLabel">Adresse für nächste Person kopieren</label>
@@ -120,9 +120,9 @@
                     <table id="overviewTable">
                         <thead>
                             <tr>
-                                <th id="tableFirstname">Vorname</th>
-                                <th id="tableLastname">Nachname</th>
-                                <th id="tableEmail">E-Mail</th>
+                                <th id="tableName">Name</th>
+                                <th id="tableBirthdate">Geburtstag</th>
+                                <th id="tableContact">Kontakt</th>
                                 <th id="tableCountry">Land</th>
                                 <th id="tableCity">Ort</th>
                                 <th id="tableZipcode">PLZ</th>
