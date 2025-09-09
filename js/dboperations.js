@@ -97,7 +97,7 @@ export async function clearOldCheckIns() {
     const store = tx.objectStore("check_ins");
 
     const oneMonthAgo = new Date();
-    oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 3);
+    oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 2);
 
     return new Promise((resolve, reject) => {
         const request = store.openCursor();

@@ -8,11 +8,11 @@
     --cancel-gray: #8e8e8e;
     --finish-bg: #f0f2f5;
 
-    --font-size-base: 18px;
-    --font-size-small: 13px;
+    --font-size-base: 14px;
+    --font-size-small: 10px;
 
     --border-radius-small: 8px;
-    --border-radius-large: 20px;
+    --border-radius-large: 18px;
 
     --transition-speed: 0.3s;
     --box-shadow-light: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -66,17 +66,17 @@ select#language option {
 
 #checkInForm,
 #checkInList {
-    padding: 10px;
+    padding: 5px 10px;
     position: relative;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 #checkInList {
-    padding: 20px;
+    padding: 10px 20px;
 }
 
 .checkInListMenu {
-    padding-bottom: 20px;
+    padding-bottom: 15px;
     display: flex;
 }
 .checkInListMenu > button {
@@ -109,7 +109,7 @@ select#language option {
 h1 {
     color: var(--primary-color);
     text-align: center;
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 0px;
 }
 
@@ -120,7 +120,7 @@ fieldset {
     grid-template-columns: 3fr 3fr 1fr;
     border-top: 2px solid var(--light-gray);
     border-bottom: 2px solid var(--light-gray);
-    padding: 20px 10px;
+    padding: 10px 10px;
 }
 
 label {
@@ -136,7 +136,7 @@ fieldset input {
 }
 
 #personForm {
-    padding: 15px;
+    padding: 0px 15px;
     margin-top: 20px;
 }
 
@@ -146,7 +146,7 @@ fieldset input {
     /* position: relative; */
 }
 .tabs label {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 input[type="radio"] {
@@ -155,7 +155,7 @@ input[type="radio"] {
 
 /* 2. Style the labels to look like buttons */
 .radio-label {
-    padding: 10px 20px;
+    padding: 8px 16px;
     border: 2px solid var(--secondary-color);
     border-radius: var(--border-radius-large);
     cursor: pointer;
@@ -171,7 +171,7 @@ input[type="radio"] {
 }
 
 .inputfield {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .inputfield label {
@@ -182,7 +182,7 @@ input[type="radio"] {
 
 input {
     width: 100%;
-    padding: 10px;
+    padding: 8px;
     box-sizing: border-box;
     border: 1px solid var(--secondary-color);
     border-radius: var(--border-radius-small);
@@ -204,17 +204,17 @@ label[for="copyAddress"] {
 #copyAddress {
     width: 22px;
     height: 22px;
-    margin-top: 15px;
+    margin-top: 12px;
 }
 
 button {
     width: 100%;
-    padding: 10px;
+    padding: 8px;
     border: none;
     border-radius: var(--border-radius-small);
     color: white;
     background-color: var(--primary-color);
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 500;
     cursor: pointer;
     transition: background-color var(--transition-speed) ease;
@@ -232,7 +232,7 @@ button {
 .person {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0px 20px;
+    gap: 0px 15px;
     padding-top: 10px;
     align-items: last baseline;
 }
@@ -242,7 +242,7 @@ button {
     flex-direction: column;
     align-items: last baseline;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 table {
@@ -258,14 +258,14 @@ table {
 th,
 td {
     text-align: left;
-    padding: 12px 15px;
+    padding: 8px 10px;
     border-bottom: 1px solid var(--border-color);
 }
 
 th {
     background-color: var(--secondary-color);
     color: var(--primary-color);
-    font-weight: 700;
+    font-weight: 600;
 }
 
 tr:nth-child(even) {
@@ -294,8 +294,8 @@ tr:hover {
 }
 
 #returnTablet {
-    /* font-size: 20px; */
-    font-weight: 800;
+    font-size: 16px;
+    font-weight: 700;
 }
 
 .importCheckInUndoBtn {
