@@ -9,6 +9,12 @@ if ("serviceWorker" in navigator) {
         });
 }
 
+flatpickr("#birthdate", {
+    dateFormat: "d-m-Y", // shows date as dd-mm-yyyy
+    allowInput: true, // lets user type manually
+    maxDate: "today", // optional: prevent future birthdays
+});
+
 import { fadeIn, fadeOut } from "./animations.js";
 import { storeCheckIns, clearOldCheckIns } from "./dboperations.js";
 import { saveFile } from "./fileoperations.js";

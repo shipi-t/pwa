@@ -7,8 +7,10 @@
         <title>Check-In</title>
         <link rel="stylesheet" href="style.css" />
         <link rel="manifest" href="manifest.json" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
     </head>
     <body>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <h1>Urfa Check-In</h1>
         <select name="language" id="language">
             <option value="DE">DE</option>
@@ -84,7 +86,14 @@
                     </div>
                     <div class="inputfield">
                         <label for="birthdate" id="birthdateLabel">Geburtstag</label>
-                        <input type="date" name="birthdate" id="birthdate" pattern=".*\w.*" required />
+                        <input
+                            type="text"
+                            name="birthdate"
+                            id="birthdate"
+                            placeholder="DD.MM.YYYY"
+                            maxlength="10"
+                            required
+                        />
                     </div>
                     <div class="inputfield">
                         <label for="contact" id="contactLabel">E-Mail/Telefon</label>
