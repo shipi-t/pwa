@@ -9,6 +9,10 @@ if ("serviceWorker" in navigator) {
         });
 }
 
+navigator.serviceWorker.addEventListener("controllerchange", () => {
+    window.location.reload();
+});
+
 import { fadeIn, fadeOut } from "./animations.js";
 import { storeCheckIns, clearOldCheckIns } from "./dboperations.js";
 import { saveFile } from "./fileoperations.js";

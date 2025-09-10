@@ -1,4 +1,4 @@
-const CACHE_NAME = "pwa-cache-v3";
+const CACHE_NAME = "pwa-cache-v4";
 const ASSETS_TO_CACHE = [
     "./",
     "./index.html",
@@ -29,6 +29,14 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(
         caches.match(event.request).then((cachedResponse) => {
             return cachedResponse || fetch(event.request);
+        })
+    );
+});
+
+self.addEventListener("activate", (event) => {
+    event.waitUntil(
+        caches.keys().then((keys) => {
+            return Promise.all(keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key)));
         })
     );
 });
