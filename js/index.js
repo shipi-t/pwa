@@ -1,17 +1,18 @@
 if ("serviceWorker" in navigator) {
-    navigator.serviceWorker
-        .register("./service-worker.js")
-        .then(() => {
-            // console.log("Service Worker registered");
-        })
-        .catch((err) => {
-            // console.error("Service Worker registration failed:", err);
-        });
-}
+    navigator.serviceWorker.register("/service-worker.js").then((registration) => {
+        console.log("Service Worker registered:", registration);
 
-navigator.serviceWorker.addEventListener("controllerchange", () => {
-    window.location.reload();
-});
+        registration.addEventListener("updatefound", () => {
+            const newWorker = registration.installing;
+            newWorker.addEventListener("statechange", () => {
+                if (newWorker.state === "activated") {
+                    console.log("New service worker activated, reloading...");
+                    window.location.reload();
+                }
+            });
+        });
+    });
+}
 
 import { fadeIn, fadeOut } from "./animations.js";
 import { storeCheckIns, clearOldCheckIns } from "./dboperations.js";

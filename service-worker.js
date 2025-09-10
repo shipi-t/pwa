@@ -1,42 +1,70 @@
-const CACHE_NAME = "pwa-cache-v4";
+const CACHE_NAME = "pwa-cache-v5"; // bump this every deploy!
 const ASSETS_TO_CACHE = [
-    "./",
-    "./index.html",
-    "./style.css",
-    "./manifest.json",
+    "/",
+    "/index.html",
+    "/style.css",
+    "/manifest.json",
 
     // JS files
-    "./js/index.js",
-    "./js/checkInList.js",
-    "./js/dboperations.js",
-    "./js/fileoperations.js",
-    "./js/animations.js",
-    "./js/language.js",
+    "/js/index.js",
+    "/js/checkInList.js",
+    "/js/dboperations.js",
+    "/js/fileoperations.js",
+    "/js/animations.js",
+    "/js/language.js",
 
     // Images
-    "./images/logo.ico",
-    "./images/logo.png",
+    "/images/logo.ico",
+    "/images/logo.png",
 ];
 
-// Install SW and cache assets
+// INSTALL: Cache assets
 self.addEventListener("install", (event) => {
-    event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS_TO_CACHE)));
-    self.skipWaiting();
+    console.log("[Service Worker] Installing new version...");
+    event.waitUntil(
+        caches.open(CACHE_NAME).then((cache) => {
+            return cache.addAll(ASSETS_TO_CACHE);
+        })
+    );
+    self.skipWaiting(); // new SW activates immediately
 });
 
-// Serve cached assets when offline
-self.addEventListener("fetch", (event) => {
-    event.respondWith(
-        caches.match(event.request).then((cachedResponse) => {
-            return cachedResponse || fetch(event.request);
-        })
+// ACTIVATE: Clean old caches and take control
+self.addEventListener("activate", (event) => {
+    console.log("[Service Worker] Activating new version...");
+    event.waitUntil(
+        caches
+            .keys()
+            .then((keys) => {
+                return Promise.all(keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key)));
+            })
+            .then(() => self.clients.claim()) // <-- take control without reload
     );
 });
 
-self.addEventListener("activate", (event) => {
-    event.waitUntil(
-        caches.keys().then((keys) => {
-            return Promise.all(keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key)));
+// FETCH: Network first for HTML, cache first for static assets
+self.addEventListener("fetch", (event) => {
+    const request = event.request;
+
+    // Always try network first for HTML files
+    if (request.mode === "navigate" || request.destination === "document") {
+        event.respondWith(
+            fetch(request)
+                .then((response) => {
+                    return caches.open(CACHE_NAME).then((cache) => {
+                        cache.put(request, response.clone());
+                        return response;
+                    });
+                })
+                .catch(() => caches.match(request)) // fallback to cache when offline
+        );
+        return;
+    }
+
+    // Cache-first for everything else
+    event.respondWith(
+        caches.match(request).then((cachedResponse) => {
+            return cachedResponse || fetch(request);
         })
     );
 });
