@@ -1,4 +1,4 @@
-const CACHE_NAME = "pwa-cache-v7"; // bump this every deploy!
+const CACHE_NAME = "pwa-cache-8"; // bump this every deploy!
 const ASSETS_TO_CACHE = [
     "/",
     "/index.html",
