@@ -58,7 +58,7 @@ async function showCheckInList() {
                 <td>${formatDateTime(p.date)}</td>
                 <td>${p.room}</td>
                 <td>${p.name}</td>
-                <td>${p.birthdate}</td>
+                <td>${formatDateTime(p.birthdate)}</td>
                 <td>${p.nationality}</td>
                 <td>${p.contact}</td>
                 <td>${p.country}</td>
