@@ -18,13 +18,13 @@ filterOpenBtn.addEventListener("click", () => {
     currentStatus = 0;
     filterAllBtn.classList.add("inactiveBtn");
     filterOpenBtn.classList.remove("inactiveBtn");
-    showCheckInList();
+    fillTable();
 });
 filterAllBtn.addEventListener("click", () => {
     currentStatus = 99;
     filterAllBtn.classList.remove("inactiveBtn");
     filterOpenBtn.classList.add("inactiveBtn");
-    showCheckInList();
+    fillTable();
 });
 document.getElementById("checkInListBack").addEventListener("click", () => {
     resetPage();
@@ -32,7 +32,7 @@ document.getElementById("checkInListBack").addEventListener("click", () => {
 
 const secretInput = document.getElementById("secret");
 const checkInList = document.getElementById("checkInList");
-document.getElementById("secretBtn").addEventListener("click", (e) => {
+document.getElementById("secretBtn").addEventListener("click", async (e) => {
     e.preventDefault();
     const pass = secretInput.value;
     secretInput.value = "";
@@ -45,14 +45,29 @@ document.getElementById("secretBtn").addEventListener("click", (e) => {
     showCheckInList();
 });
 
-async function showCheckInList() {
-    // 0 heißt noch nicht fertig.. alternativ auch garnicht mitgeben und alle auswählen...
-    const checkIns = await getCheckIns(currentStatus);
-    checkIns.sort((a, b) => new Date(b.date) - new Date(a.date));
+const suche = document.getElementById("suche");
+let checkIns;
+suche.addEventListener("keyup", fillTable);
 
+async function showCheckInList() {
+    checkIns = await getCheckIns();
+    checkIns.sort((a, b) => new Date(b.date) - new Date(a.date));
+    fillTable();
+    fadeOut(document.getElementById("checkInForm"));
+    fadeIn(checkInList);
+}
+
+function fillTable() {
     const tableBody = document.querySelector("#checkInListTable tbody");
     tableBody.innerHTML = "";
     checkIns.forEach((p) => {
+        let filterstring = `${p.room}${p.name}${p.contact}`;
+        let search = new RegExp(suche.value);
+        if (suche.value.length > 0) {
+            if (!search.test(filterstring.toLowerCase())) return;
+        }
+        if (p.imported != currentStatus && currentStatus != 99) return;
+
         tableBody.innerHTML += `
             <tr>
                 <td>${formatDateTime(p.date)}</td>
@@ -76,8 +91,6 @@ async function showCheckInList() {
             </tr>
         `;
     });
-    fadeOut(document.getElementById("checkInForm"));
-    fadeIn(checkInList);
 }
 
 function formatDateTime(dateString) {

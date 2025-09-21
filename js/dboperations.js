@@ -59,7 +59,7 @@ export async function storeCheckIns(personArray, room) {
     };
 }
 
-export async function getCheckIns(imported = 99) {
+export async function getCheckIns() {
     const db = await openDB();
     const transaction = db.transaction("check_ins", "readonly");
     const store = transaction.objectStore("check_ins");
@@ -68,7 +68,7 @@ export async function getCheckIns(imported = 99) {
     const importedIndex = store.index("imported");
 
     return new Promise((resolve, reject) => {
-        let request = imported == 99 ? importedIndex.getAll() : importedIndex.getAll(IDBKeyRange.only(imported));
+        let request = importedIndex.getAll();
 
         request.onsuccess = (event) => resolve(event.target.result);
         request.onerror = (event) => reject(event.target.error);
